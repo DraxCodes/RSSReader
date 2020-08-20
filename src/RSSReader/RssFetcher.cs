@@ -30,6 +30,7 @@ namespace RSSReader
         {
             var feedData = FetchFeedData(uri);
             var feedItems = new List<FeedDataModel>();
+
             if (feedData.Items.Any())
             {
                 foreach (var item in feedData.Items)
