@@ -13,7 +13,6 @@ namespace RSSReader.Tests
     [Trait("TestType", "Integration")]
     public class IntegrationTests
     {
-        private IRssFetcher _rssFetcher;
 
         [Theory]
         [InlineData("https://www.theverge.com/rss/index.xml")]
@@ -43,7 +42,7 @@ namespace RSSReader.Tests
         [Fact]
         public void ValidFeedXml_NoValuesShouldBeNull()
         {
-            _rssFetcher = new RssFetcher(new MockXmlReaderProviderFullXml());
+            var _rssFetcher = new RssFetcher(new MockXmlReaderProviderFullXml());
 
             var result = _rssFetcher.FetchAllArticles("http://totally-real-rss-feed.com");
 
