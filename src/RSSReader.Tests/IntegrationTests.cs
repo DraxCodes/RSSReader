@@ -47,9 +47,8 @@ namespace RSSReader.Tests
         }
 
         [Fact]
-        public void ValidFeedXml_ShouldReturnTitles()
+        public void ValidFeedXml_NoValuesShouldBeNull()
         {
-            var expected = string.Empty;
             _rssFetcher = new RssFetcher(new MockXmlReaderProviderFullXml());
 
             var result = _rssFetcher.FetchAllArticles("http://fake.com");

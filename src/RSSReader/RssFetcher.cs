@@ -40,6 +40,7 @@ namespace RSSReader
                     {
                         Title = item.Title?.Text ?? string.Empty,
                         Summary = item.Summary?.Text ?? string.Empty,
+                        PublishDate = item.PublishDate,
                         
                         Url = item.Links.Any() 
                         ? item.Links.First().Uri.AbsoluteUri 
