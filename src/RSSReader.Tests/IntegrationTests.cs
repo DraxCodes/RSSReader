@@ -1,5 +1,4 @@
-﻿using RSSReader.Abstractions;
-using RSSReader.Models;
+﻿using RSSReader.Models;
 using RSSReader.Tests.MockXml;
 using System;
 using System.Collections.Generic;
