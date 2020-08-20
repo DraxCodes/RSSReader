@@ -4,11 +4,11 @@ using System.Xml;
 
 namespace RSSReader.Tests.MockXml
 {
-    internal class MockXmlReaderProvderNullTitle : IXmlReaderProvider
+    internal class MockXmlReaderProviderNullUrl : IXmlReaderProvider
     {
         public XmlReader Create(string absoluteUri)
         {
-            TextReader textReader = new StreamReader("./MockXml/Documents/MockXmlNullTitle.xml");
+            TextReader textReader = new StreamReader("./MockXml/Documents/MockXmlNullUrl.xml");
             var result = XmlReader.Create(textReader);
             return result;
         }
