@@ -14,12 +14,6 @@ namespace RSSReader.Tests
     public class IntegrationTests
     {
         private IRssFetcher _rssFetcher;
-        private readonly IXmlReaderProvider _xmlReaderProvider;
-
-        public IntegrationTests()
-        {
-            _xmlReaderProvider = new XmlReaderProvider();
-        }
 
         [Theory]
         [InlineData("https://www.theverge.com/rss/index.xml")]
