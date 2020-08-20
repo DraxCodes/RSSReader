@@ -1,3 +1,26 @@
+﻿using RSSReader.Abstractions;
+using RSSReader.Models;
+using RSSReader.Tests.MockXml;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel.Syndication;
+using System.Xml;
+using Xunit;
+
+namespace RSSReader.Tests
+{
+    [Trait("TestType", "Integration")]
+    public class IntegrationTests
+    {
+        private IRssFetcher _rssFetcher;
+        private readonly IXmlReaderProvider _xmlReaderProvider;
+
+        public IntegrationTests()
+        {
+            _xmlReaderProvider = new XmlReaderProvider();
+        }
+
         [Theory]
         [InlineData("https://www.theverge.com/rss/index.xml")]
         [InlineData("http://feeds.feedburner.com/TechCrunch/")]
@@ -22,3 +45,27 @@
 
             Assert.NotEmpty(feedData);
         }
+
+        [Fact]
+        public void ValidFeedXml_ShouldReturnTitles()
+        {
+            var expected = string.Empty;
+            _rssFetcher = new RssFetcher(new MockXmlReaderProviderFullXml());
+
+            var result = _rssFetcher.FetchAllArticles("http://fake.com");
+
+            Assert.NotEmpty(result);
+            AssertAllModelValuesNotNull(result);
+        }
+
+        private void AssertAllModelValuesNotNull(IEnumerable<FeedDataModel> models)
+        {
+            foreach (var model in models)
+            {
+                Assert.NotNull(model.Title);
+                Assert.NotNull(model.Summary);
+                Assert.NotNull(model.Url);
+            }
+        }
+    }
+}
