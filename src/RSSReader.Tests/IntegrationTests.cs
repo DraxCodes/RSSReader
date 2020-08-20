@@ -51,7 +51,7 @@ namespace RSSReader.Tests
         {
             _rssFetcher = new RssFetcher(new MockXmlReaderProviderFullXml());
 
-            var result = _rssFetcher.FetchAllArticles("http://fake.com");
+            var result = _rssFetcher.FetchAllArticles("http://totally-real-rss-feed.com");
 
             Assert.NotEmpty(result);
             AssertAllModelValuesNotNull(result);

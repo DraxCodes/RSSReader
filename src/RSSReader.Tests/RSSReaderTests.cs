@@ -37,23 +37,12 @@ namespace RSSReader.Tests
         }
 
         [Fact]
-        public void ValidFeedUrl_ShouldReturnItems()
-        {
-            const string validRssFeedUrl = "https://www.theverge.com/rss/index.xml";
-            _rssFetcher = new RssFetcher(_xmlReaderProvider);
-
-            var result = _rssFetcher.FetchAllArticles(validRssFeedUrl);
-
-            Assert.NotEmpty(result);
-        }
-
-        [Fact]
         public void FeedWithoutSummary_ShouldReturnEmptySummaryString()
         {
             var expected = string.Empty;
             _rssFetcher = new RssFetcher(new MockXmlReaderProviderNullSummary());
 
-            var result = _rssFetcher.FetchAllArticles("http://fake.com");
+            var result = _rssFetcher.FetchAllArticles("http://mocked-rss-feed.com");
             var firstResult = result.First();
 
             Assert.Equal(expected, firstResult.Summary);
@@ -65,7 +54,7 @@ namespace RSSReader.Tests
             var expected = string.Empty;
             _rssFetcher = new RssFetcher(new MockXmlReaderProviderNullTitle());
 
-            var result = _rssFetcher.FetchAllArticles("http://fake.com");
+            var result = _rssFetcher.FetchAllArticles("http://mocked-rss-feed.com");
             var firstResult = result.First();
 
             Assert.Equal(expected, firstResult.Title);
@@ -77,7 +66,7 @@ namespace RSSReader.Tests
             var expected = string.Empty;
             _rssFetcher = new RssFetcher(new MockXmlReaderProviderNullUrl());
 
-            var result = _rssFetcher.FetchAllArticles("http://fake.com");
+            var result = _rssFetcher.FetchAllArticles("http://mocked-rss-feed.com");
             var firstResult = result.First();
 
             Assert.Equal(expected, firstResult.Url);
