@@ -36,16 +36,8 @@ namespace RSSReader
             {
                 foreach (var item in feedData.Items)
                 {
-                    feedItems.Add(new FeedDataModel
-                    {
-                        Title = item.Title?.Text ?? string.Empty,
-                        Summary = item.Summary?.Text ?? string.Empty,
-                        PublishDate = item.PublishDate,
-                        
-                        Url = item.Links.Any() 
-                        ? item.Links.First().Uri.AbsoluteUri 
-                        : string.Empty 
-                    });
+                    var feedModel = BuildFeedModel(item);
+                    feedItems.Add(feedModel);
                 }
             }
 
@@ -67,5 +59,16 @@ namespace RSSReader
             }
         }
 
+        private FeedDataModel BuildFeedModel(SyndicationItem item)
+            => new FeedDataModel
+            {
+                Title = item.Title?.Text ?? string.Empty,
+                Summary = item.Summary?.Text ?? string.Empty,
+                PublishDate = item.PublishDate,
+
+                Url = item.Links.Any()
+                    ? item.Links.First().Uri.AbsoluteUri
+                    : string.Empty
+            };
     }
 }
