@@ -23,9 +23,7 @@ namespace RSSReader
             if (!Uri.IsWellFormedUriString(url, UriKind.Absolute))
                 throw new InvalidUrlException("Supplied URL is invalid.");
 
-            var uri = new Uri(url);
-
-            return GetFeedItems(uri);
+            return GetFeedItems(new Uri(url));
         }
 
         private IEnumerable<FeedDataModel> GetFeedItems(Uri uri)
